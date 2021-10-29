@@ -11,4 +11,4 @@ app.get('/api/notes', (req, res) => {
 
 app.listen(3001, () => {
     console.log(`API server now on port ${PORT}!`);
-  })
+  });
