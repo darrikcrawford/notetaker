@@ -6,6 +6,8 @@ const { notes } = require('./Develop/data/notes.json');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+// make public folder into static resources
+app.use(express.static('public'));
 // parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
@@ -50,6 +52,19 @@ app.post('/api/notes', (req, res) => {
   }
 });
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './Develop/public/index.html'));
+});
+
+app.get('/notes', (req, res) => {
+  res.sendFile(path.join(__dirname, './Develop/public/notes.html'));
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './Develop/public/index.html'));
+});
+
 app.listen(3001, () => {
     console.log(`API server now on port ${PORT}!`);
   });
+  //11.3.7
